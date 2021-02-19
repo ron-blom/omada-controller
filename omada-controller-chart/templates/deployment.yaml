@@ -8,6 +8,8 @@ spec:
 {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
 {{- end }}
+  strategy:
+    type: Recreate      
   selector:
     matchLabels:
       {{- include "omada-controller-chart.selectorLabels" . | nindent 6 }}
@@ -33,6 +35,8 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          # command: ["sleep"]
+          # args: ["infinity"]
           volumeMounts:
             - name: omada-data
               mountPath: /opt/tplink/EAPController/data
