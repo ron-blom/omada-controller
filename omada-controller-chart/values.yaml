@@ -8,7 +8,7 @@ image:
   repository: mbentley/omada-controller
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "5.12"
+  tag: "5.13"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -85,3 +85,6 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+environmentvars:
+  TZ: Europe/Amsterdam
